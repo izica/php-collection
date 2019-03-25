@@ -45,10 +45,11 @@ class PhpCollection
      * @param $keys
      * @return PhpCollection
      */
-    public function only($keys){
+    public function only($keys)
+    {
         $fnMap = function ($arItem) use ($keys) {
             $arNewItem = [];
-            foreach ($keys as $key){
+            foreach ($keys as $key) {
                 $arNewItem[$key] = $arItem[$key];
             }
             return $arNewItem;
@@ -61,16 +62,17 @@ class PhpCollection
      * @param $keys
      * @return PhpCollection
      */
-    public function exclude($keys){
+    public function exclude($keys)
+    {
         $arKeys = [];
-        foreach ($keys as $key){
+        foreach ($keys as $key) {
             $arKeys[$key] = $key;
         }
 
         $fnMap = function ($arItem) use ($arKeys) {
             $arNewItem = [];
-            foreach ($arItem as $sKey => $anyValue){
-                if(!isset($arKeys[$sKey])){
+            foreach ($arItem as $sKey => $anyValue) {
+                if (!isset($arKeys[$sKey])) {
                     $arNewItem[$sKey] = $arItem[$sKey];
                 }
             }
@@ -196,5 +198,56 @@ class PhpCollection
     public function toJson()
     {
         return json_encode($this->arCollection);
+    }
+
+    public function count()
+    {
+        return count($this->arCollection);
+    }
+
+    public function first()
+    {
+        foreach ($this->arCollection as $arItem) {
+            return $arItem;
+        }
+    }
+
+    public function last()
+    {
+        $arData = '';
+
+        foreach ($this->arCollection as $arItem) {
+            $arData = $arItem;
+        }
+        return $arItem;
+    }
+
+    public function values()
+    {
+        $arData = array_values($this->arCollection);
+        return new PhpCollection($arData);
+    }
+
+    public function sortBy($key)
+    {
+        $arData = array_values($this->arCollection);
+        usort($arData, function ($arItemA, $arItemB) use ($key) {
+            return ($arItemA[$key] > $arItemB[$key]) ? +1 : -1;
+        });
+        return $arData;
+    }
+
+    public function sort($function)
+    {
+        $arData = array_values($this->arCollection);
+        usort($arData, $function);
+        return $arData;
+    }
+
+    public function sortWithKeys($function)
+    {
+        $arData = $this->arCollection;
+        uasort($arData, $function);
+        return $arData;
     }
 }
