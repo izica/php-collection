@@ -47,15 +47,28 @@ class PhpCollection
      */
     public function only($keys)
     {
-        $fnMap = function ($arItem) use ($keys) {
+        $arKeys = [];
+        foreach ($keys as $key) {
+            $arKeys[$key] = $key;
+        }
+
+        $fnMapItem = function ($arItem) use ($arKeys) {
             $arNewItem = [];
-            foreach ($keys as $key) {
-                $arNewItem[$key] = $arItem[$key];
+            foreach ($arItem as $sKey => $anyValue) {
+                if (isset($arKeys[$sKey])) {
+                    $arNewItem[$sKey] = $arItem[$sKey];
+                }
             }
             return $arNewItem;
         };
 
-        return $this->map($fnMap);
+        $arData = [];
+
+        foreach ($this->arCollection as $sKey => $arItem) {
+            $arData[$sKey] = $fnMapItem($arItem);
+        }
+
+        return new PhpCollection($arData);
     }
 
     /**
@@ -69,7 +82,7 @@ class PhpCollection
             $arKeys[$key] = $key;
         }
 
-        $fnMap = function ($arItem) use ($arKeys) {
+        $fnMapItem = function ($arItem) use ($arKeys) {
             $arNewItem = [];
             foreach ($arItem as $sKey => $anyValue) {
                 if (!isset($arKeys[$sKey])) {
@@ -79,7 +92,13 @@ class PhpCollection
             return $arNewItem;
         };
 
-        return $this->map($fnMap);
+        $arData = [];
+
+        foreach ($this->arCollection as $sKey => $arItem) {
+            $arData[$sKey] = $fnMapItem($arItem);
+        }
+
+        return new PhpCollection($arData);
     }
 
     /**
@@ -200,11 +219,17 @@ class PhpCollection
         return json_encode($this->arCollection);
     }
 
+    /**
+     * @return int
+     */
     public function count()
     {
         return count($this->arCollection);
     }
 
+    /**
+     * @return mixed
+     */
     public function first()
     {
         foreach ($this->arCollection as $arItem) {
@@ -212,6 +237,9 @@ class PhpCollection
         }
     }
 
+    /**
+     * @return mixed
+     */
     public function last()
     {
         $arData = '';
@@ -222,12 +250,19 @@ class PhpCollection
         return $arItem;
     }
 
+    /**
+     * @return PhpCollection
+     */
     public function values()
     {
         $arData = array_values($this->arCollection);
         return new PhpCollection($arData);
     }
 
+    /**
+     * @param $key
+     * @return array
+     */
     public function sortBy($key)
     {
         $arData = array_values($this->arCollection);
@@ -237,6 +272,10 @@ class PhpCollection
         return $arData;
     }
 
+    /**
+     * @param $function
+     * @return array
+     */
     public function sort($function)
     {
         $arData = array_values($this->arCollection);
@@ -244,6 +283,10 @@ class PhpCollection
         return $arData;
     }
 
+    /**
+     * @param $function
+     * @return array
+     */
     public function sortWithKeys($function)
     {
         $arData = $this->arCollection;
