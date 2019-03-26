@@ -293,4 +293,56 @@ class PhpCollection
         uasort($arData, $function);
         return $arData;
     }
+
+    /**
+     * @param $function
+     * @return bool|mixed
+     */
+    public function find($function)
+    {
+        $arData = [];
+        foreach ($this->arCollection as $arItem) {
+            if ($function($arItem)) {
+                return $arItem;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @param $function
+     * @return bool
+     */
+    public function every($function)
+    {
+        foreach ($this->arCollection as $arItem) {
+            if (!$function($arItem)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * @param $function
+     * @return bool
+     */
+    public function contains($function)
+    {
+        foreach ($this->arCollection as $arItem) {
+            if ($function($arItem)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @param $function
+     * @return bool
+     */
+    public function some($function)
+    {
+        return $this->contains($function);
+    }
 }

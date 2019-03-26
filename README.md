@@ -190,6 +190,9 @@ $collection = PhpCollection:collect($products)->groupBy('category_id')->all();
 
 ```
 
+#### find(function($item)) 
+#### some(function($item)) OR contains(function($item))
+#### every(function($item))
 #### sort(function($item))
 #### sortBy($key)
 #### sortWithKeys(function($item))
@@ -204,8 +207,6 @@ $collection = PhpCollection:collect($products)->groupBy('category_id')->all();
 ### TODO
 #### dumpBrowser()
 #### dump()
-#### find(function($item))
-#### some(function($item))
-#### every(function($item))
+
 #### toCsv()
 #### toXml()
