@@ -18,8 +18,9 @@ $collection = PhpCollection:collect($products);
 
 ```php
 $collection = PhpCollection:collect([100, 'data', 300, 400])->implode();
-// 100, data, 300, 400
-
+/*
+    100, data, 300, 400
+*/
 
 $products = [
     ['id' => 1, 'name' => 'product 1', 'price' => 100],
@@ -33,8 +34,9 @@ $serializer = function($item){
 };
 
 $collection = PhpCollection:collect($products)->implode(', ', $serializer);
-// product 1-100$, product 2-200$, product 3-300$
-
+/*
+    product 1-100$, product 2-200$, product 3-300$
+*/
 ```
 
 #### pluck($key)
@@ -46,11 +48,14 @@ $products = [
 ];
 
 $collection = PhpCollection:collect($products)->pluck('id')->all();
-// [1, 2, 3]
+/*
+    [1, 2, 3]
+*/  
 
 $collection = PhpCollection:collect($products)->pluck('name')->all();
-// ['product 1', 'product 2', 'product 3']
-
+/*
+    ['product 1', 'product 2', 'product 3']
+*/ 
 ```
 
 #### only($keys)
