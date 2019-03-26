@@ -190,7 +190,22 @@ $collection = PhpCollection:collect($products)->groupBy('category_id')->all();
 
 ```
 
-* toArray()
-* all -toArray alias
-* toJson()
-* TODO
+#### sort(function($item))
+#### sortBy($key)
+#### sortWithKeys(function($item))
+#### values()
+#### first()
+#### last()
+#### count()
+#### all() OR toArray()
+#### toJson()
+
+
+### TODO
+#### dumpBrowser()
+#### dump()
+#### find(function($item))
+#### some(function($item))
+#### every(function($item))
+#### toCsv()
+#### toXml()
