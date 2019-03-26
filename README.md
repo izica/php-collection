@@ -204,9 +204,8 @@ $collection = PhpCollection:collect($products)->groupBy('category_id')->all();
 #### toJson()
 
 
-### TODO
+## TODO
 #### dumpBrowser()
 #### dump()
-
 #### toCsv()
 #### toXml()
