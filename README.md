@@ -7,6 +7,22 @@ inspired by Illuminate\Support\Collection and Lodash
 composer require izica/php-collection
 ```
 
+### Notice
+Every method create new collection, not mutate data;
+
+```php
+
+$collection = PhpCollection:collect([100, 200, 300, 400]);
+$collection2 = $collection->filter(function($item){
+    return $item > 200;
+})
+
+/*
+    $collection != $collection2
+*/
+
+```
+
 ### Documentation
 
 * [collect](#collectarray)
@@ -241,7 +257,7 @@ $collection = PhpCollection:collect($products)->groupBy('category_id')->all();
 #### count()
 #### all() OR toArray()
 #### toJson()
-
+#### zip()
 
 ## TODO
 #### dumpBrowser()

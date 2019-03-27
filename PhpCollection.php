@@ -105,6 +105,21 @@ class PhpCollection
         return new PhpCollection($arData);
     }
 
+    public function zip($array){
+        $arData = [];
+
+        $arCollection = array_values($this->arCollection);
+        $nCount = count($arCollection);
+
+        for ($nIndex = 0; $nIndex < $nCount; $nIndex++) {
+            $arFirstItem = is_array($arCollection[$nIndex]) ? $arCollection[$nIndex] : [$arCollection[$nIndex]];
+            $arSecondItem = is_array($array[$nIndex]) ? $array[$nIndex] : [$array[$nIndex]];
+            $arData[] = array_merge($arFirstItem, $arSecondItem);
+        }
+
+        return new PhpCollection($arData);
+    }
+
     /**
      * @param string $glue
      * @param string $serializer
@@ -167,8 +182,8 @@ class PhpCollection
             };
         }
         $arData = [];
-        foreach ($this->arCollection as $arItem) {
-            $arData[] = $function($arItem);
+        foreach ($this->arCollection as $sKey => $arItem) {
+            $arData[$sKey] = $function($arItem, $sKey);
         }
         return new PhpCollection($arData);
     }
