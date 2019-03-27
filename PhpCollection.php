@@ -48,15 +48,19 @@ class PhpCollection
     public function only($keys)
     {
         $arKeys = [];
-        foreach ($keys as $key) {
-            $arKeys[$key] = $key;
+        foreach ($keys as $anyKey => $sValue) {
+            if(is_int($anyKey)){
+                $arKeys[$sValue] = $sValue;
+            }else{
+                $arKeys[$anyKey] = $sValue;
+            }
         }
 
         $fnMapItem = function ($arItem) use ($arKeys) {
             $arNewItem = [];
             foreach ($arItem as $sKey => $anyValue) {
                 if (isset($arKeys[$sKey])) {
-                    $arNewItem[$sKey] = $arItem[$sKey];
+                    $arNewItem[$arKeys[$sKey]] = $arItem[$sKey];
                 }
             }
             return $arNewItem;

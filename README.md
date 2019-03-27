@@ -67,12 +67,21 @@ $products = [
 ];
 
 $collection = PhpCollection:collect($products)->only(['id', 'name'])->all();
-
 /*
 [
     ['id' => 1, 'name' => 'product 1'],
     ['id' => 2, 'name' => 'product 2'],
     ['id' => 3, 'name' => 'product 3']
+]
+*/
+
+$collection = PhpCollection:collect($products)->only(['id', 'name' => 'title'])->all();
+
+/*
+[
+    ['id' => 1, 'title' => 'product 1'],
+    ['id' => 2, 'title' => 'product 2'],
+    ['id' => 3, 'title' => 'product 3']
 ]
 */
 
