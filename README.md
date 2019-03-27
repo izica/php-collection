@@ -8,7 +8,7 @@ composer require izica/php-collection
 ```
 
 ### Notice
-Every method create new collection, not mutate data;
+Every method will returns new collection, not mutated collection;
 
 ```php
 
