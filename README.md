@@ -2,6 +2,36 @@
 
 inspired by Illuminate\Support\Collection and Lodash
 
+### Usage
+```
+composer require izica/php-collection
+```
+
+### Documentation
+
+* [collect](#collectarray)
+* [implode OR join](#implodearray----serializer---or-joinarray----serializer--)
+* [pluck](#pluckkey)
+* [only](#onlykeys)
+* [exclude](#excludekeys)
+* [filter](#filterfunctionitem)
+* [map](#mapfunctionitem)
+* [keyBy](#keybykey)
+* [groupBy](#groupbykey)
+* [find](#findfunctionitem)
+* [some OR contains](#somefunctionitem-or-containsfunctionitem)
+* [every](#everyfunctionitem)
+* [sort](#sortfunctionitem)
+* [sortBy](#sortbykey)
+* [sortWithKeys](#sortwithkeysfunctionitem)
+* [values](#values)
+* [first](#first)
+* [last](#last)
+* [count](#count)
+* [all or toArray](#all-or-toarray)
+* [toJson](#tojson)
+
+
 #### collect($array)
 ```php
 $products = [
