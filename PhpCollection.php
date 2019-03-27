@@ -239,6 +239,8 @@ class PhpCollection
         foreach ($this->arCollection as $arItem) {
             return $arItem;
         }
+
+        return false;
     }
 
     /**
@@ -246,12 +248,13 @@ class PhpCollection
      */
     public function last()
     {
-        $arData = '';
+        $arData = false;
 
         foreach ($this->arCollection as $arItem) {
             $arData = $arItem;
         }
-        return $arItem;
+
+        return $arData;
     }
 
     /**
