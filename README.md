@@ -244,7 +244,7 @@ $collection = PhpCollection:collect($products)->groupBy("category_id")->all();
 ```
 
 #### find(function($item)) 
-#### some($value | function($item)) OR contains($value | function($item)))
+#### some($value | function($item)) OR contains($value | function($item))
 #### every(function($item))
 #### sort("" | $key | function($item))
 #### values()
@@ -263,8 +263,7 @@ $collection = PhpCollection:collect($products)->groupBy("category_id")->all();
 #### shuffle()
 #### random()
 #### chunk()
-#### unique()
-#### uniqueBy($key)
+#### unique("" | $key | function($item))
 #### collapse()
 #### diff($array)
 #### has($key)
