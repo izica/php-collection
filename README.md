@@ -201,7 +201,7 @@ $collection = PhpCollection:collect($products)
 
 ```
 
-#### keyBy($key)
+#### keyBy($key | function($item))
 ```php
 $products = [
     ['id' => 16, 'name' => 'product 1', 'price' => 100],
@@ -221,7 +221,7 @@ $collection = PhpCollection:collect($products)->keyBy('id')->all();
 
 ```
 
-#### groupBy($key)
+#### groupBy($key | function($item))
 ```php
 $products = [
     ['id' => 16, 'category_id' => 1, 'name' => 'product 1', 'price' => 100],
@@ -246,11 +246,9 @@ $collection = PhpCollection:collect($products)->groupBy('category_id')->all();
 ```
 
 #### find(function($item)) 
-#### some(function($item)) OR contains(function($item))
+#### some($value | function($item)) OR contains($value | function($item)))
 #### every(function($item))
-#### sort(function($item))
-#### sortBy($key)
-#### sortWithKeys(function($item))
+#### sort('' | $key | function($item))
 #### values()
 #### first()
 #### last()
@@ -264,3 +262,15 @@ $collection = PhpCollection:collect($products)->groupBy('category_id')->all();
 #### dump()
 #### toCsv()
 #### toXml()
+#### shuffle()
+#### random()
+#### chunk()
+#### unique()
+#### uniqueBy($key)
+#### collapse()
+#### diff($array)
+#### has($key)
+#### flip()
+#### min('' | $key | function($item))
+#### max('' | $key | function($item))
+#### reduce($function)
