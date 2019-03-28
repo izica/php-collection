@@ -38,8 +38,6 @@ $collection2 = $collection->filter(function($item){
 * [some OR contains](#somefunctionitem-or-containsfunctionitem)
 * [every](#everyfunctionitem)
 * [sort](#sortfunctionitem)
-* [sortBy](#sortbykey)
-* [sortWithKeys](#sortwithkeysfunctionitem)
 * [values](#values)
 * [first](#first)
 * [last](#last)
@@ -51,27 +49,27 @@ $collection2 = $collection->filter(function($item){
 #### collect($array)
 ```php
 $products = [
-    ['id' => 1, 'name' => 'product 1', 'price' => 100],
-    ['id' => 2, 'name' => 'product 2', 'price' => 200],
-    ['id' => 3, 'name' => 'product 3', 'price' => 300]
+    ["id" => 1, "name" => "product 1", "price" => 100],
+    ["id" => 2, "name" => "product 2", "price" => 200],
+    ["id" => 3, "name" => "product 3", "price" => 300]
 ];
 
 $collection = PhpCollection:collect($products);
 
 ```
 
-#### implode($array = ', ', $serializer = '') OR join($array = ', ', $serializer = '')
+#### implode($array = ", ", $serializer = "") OR join($array = ", ", $serializer = "")
 
 ```php
-$collection = PhpCollection:collect([100, 'data', 300, 400])->implode();
+$collection = PhpCollection:collect([100, "data", 300, 400])->implode();
 /*
     100, data, 300, 400
 */
 
 $products = [
-    ['id' => 1, 'name' => 'product 1', 'price' => 100],
-    ['id' => 2, 'name' => 'product 2', 'price' => 200],
-    ['id' => 3, 'name' => 'product 3', 'price' => 300]
+    ["id" => 1, "name" => "product 1", "price" => 100],
+    ["id" => 2, "name" => "product 2", "price" => 200],
+    ["id" => 3, "name" => "product 3", "price" => 300]
 ];
 
 // should return string
@@ -79,7 +77,7 @@ $serializer = function($item){
     return "{$item['name']}-{$item['price']}$"; // or for example -- return json_encode($item);
 };
 
-$collection = PhpCollection:collect($products)->implode(', ', $serializer);
+$collection = PhpCollection:collect($products)->implode(", ", $serializer);
 /*
     product 1-100$, product 2-200$, product 3-300$
 */
@@ -88,46 +86,46 @@ $collection = PhpCollection:collect($products)->implode(', ', $serializer);
 #### pluck($key)
 ```php
 $products = [
-    ['id' => 1, 'name' => 'product 1', 'price' => 100],
-    ['id' => 2, 'name' => 'product 2', 'price' => 200],
-    ['id' => 3, 'name' => 'product 3', 'price' => 300]
+    ["id" => 1, "name" => "product 1", "price" => 100],
+    ["id" => 2, "name" => "product 2", "price" => 200],
+    ["id" => 3, "name" => "product 3", "price" => 300]
 ];
 
-$collection = PhpCollection:collect($products)->pluck('id')->all();
+$collection = PhpCollection:collect($products)->pluck("id")->all();
 /*
     [1, 2, 3]
 */  
 
-$collection = PhpCollection:collect($products)->pluck('name')->all();
+$collection = PhpCollection:collect($products)->pluck("name")->all();
 /*
-    ['product 1', 'product 2', 'product 3']
+    ["product 1", "product 2", "product 3"]
 */ 
 ```
 
 #### only($keys)
 ```php
 $products = [
-    ['id' => 1, 'name' => 'product 1', 'price' => 100],
-    ['id' => 2, 'name' => 'product 2', 'price' => 200],
-    ['id' => 3, 'name' => 'product 3', 'price' => 300]
+    ["id" => 1, "name" => "product 1", "price" => 100],
+    ["id" => 2, "name" => "product 2", "price" => 200],
+    ["id" => 3, "name" => "product 3", "price" => 300]
 ];
 
-$collection = PhpCollection:collect($products)->only(['id', 'name'])->all();
+$collection = PhpCollection:collect($products)->only(["id", "name"])->all();
 /*
 [
-    ['id' => 1, 'name' => 'product 1'],
-    ['id' => 2, 'name' => 'product 2'],
-    ['id' => 3, 'name' => 'product 3']
+    ["id" => 1, "name" => "product 1"],
+    ["id" => 2, "name" => "product 2"],
+    ["id" => 3, "name" => "product 3"]
 ]
 */
 
-$collection = PhpCollection:collect($products)->only(['id', 'name' => 'title'])->all();
+$collection = PhpCollection:collect($products)->only(["id", "name" => "title"])->all();
 
 /*
 [
-    ['id' => 1, 'title' => 'product 1'],
-    ['id' => 2, 'title' => 'product 2'],
-    ['id' => 3, 'title' => 'product 3']
+    ["id" => 1, "title" => "product 1"],
+    ["id" => 2, "title" => "product 2"],
+    ["id" => 3, "title" => "product 3"]
 ]
 */
 
@@ -136,18 +134,18 @@ $collection = PhpCollection:collect($products)->only(['id', 'name' => 'title'])-
 #### exclude($keys)
 ```php
 $products = [
-    ['id' => 1, 'name' => 'product 1', 'price' => 100],
-    ['id' => 2, 'name' => 'product 2', 'price' => 200],
-    ['id' => 3, 'name' => 'product 3', 'price' => 300]
+    ["id" => 1, "name" => "product 1", "price" => 100],
+    ["id" => 2, "name" => "product 2", "price" => 200],
+    ["id" => 3, "name" => "product 3", "price" => 300]
 ];
 
-$collection = PhpCollection:collect($products)->exclude(['name'])->all();
+$collection = PhpCollection:collect($products)->exclude(["name"])->all();
 
 /*
 [
-    ['id' => 1, 'price' => 100],
-    ['id' => 2, 'price' => 200],
-    ['id' => 3, 'price' => 300]
+    ["id" => 1, "price" => 100],
+    ["id" => 2, "price" => 200],
+    ["id" => 3, "price" => 300]
 ]
 */
 
@@ -156,21 +154,21 @@ $collection = PhpCollection:collect($products)->exclude(['name'])->all();
 #### filter(function($item))
 ```php
 $products = [
-    ['id' => 1, 'name' => 'product 1', 'price' => 100],
-    ['id' => 2, 'name' => 'product 2', 'price' => 200],
-    ['id' => 3, 'name' => 'product 3', 'price' => 300]
+    ["id" => 1, "name" => "product 1", "price" => 100],
+    ["id" => 2, "name" => "product 2", "price" => 200],
+    ["id" => 3, "name" => "product 3", "price" => 300]
 ];
 
 $collection = PhpCollection:collect($products)
     ->filter(function($item){
-        return $item['price'] > 100    
+        return $item["price"] > 100    
     })
     ->all();
 
 /*
 [
-    ['id' => 2, 'name' => 'product 2', 'price' => 200],
-    ['id' => 3, 'name' => 'product 3', 'price' => 300]
+    ["id" => 2, "name" => "product 2", "price" => 200],
+    ["id" => 3, "name" => "product 3", "price" => 300]
 ]
 */
 
@@ -179,23 +177,23 @@ $collection = PhpCollection:collect($products)
 #### map(function($item))
 ```php
 $products = [
-    ['id' => 1, 'name' => 'product 1', 'price' => 100],
-    ['id' => 2, 'name' => 'product 2', 'price' => 200],
-    ['id' => 3, 'name' => 'product 3', 'price' => 300]
+    ["id" => 1, "name" => "product 1", "price" => 100],
+    ["id" => 2, "name" => "product 2", "price" => 200],
+    ["id" => 3, "name" => "product 3", "price" => 300]
 ];
 
 $collection = PhpCollection:collect($products)
     ->map(function($item){
-        $item['pricex2'] = $item['price'] * 2;
+        $item["pricex2"] = $item["price"] * 2;
         return $item;   
     })
     ->all();
 
 /*
 [
-    ['id' => 1, 'name' => 'product 1', 'price' => 100, 'pricex2' => 200],
-    ['id' => 2, 'name' => 'product 2', 'price' => 200, 'pricex2' => 400],
-    ['id' => 3, 'name' => 'product 3', 'price' => 300, 'pricex2' => 600]
+    ["id" => 1, "name" => "product 1", "price" => 100, "pricex2" => 200],
+    ["id" => 2, "name" => "product 2", "price" => 200, "pricex2" => 400],
+    ["id" => 3, "name" => "product 3", "price" => 300, "pricex2" => 600]
 ]
 */
 
@@ -204,18 +202,18 @@ $collection = PhpCollection:collect($products)
 #### keyBy($key | function($item))
 ```php
 $products = [
-    ['id' => 16, 'name' => 'product 1', 'price' => 100],
-    ['id' => 22, 'name' => 'product 2', 'price' => 200],
-    ['id' => 31, 'name' => 'product 3', 'price' => 300]
+    ["id" => 16, "name" => "product 1", "price" => 100],
+    ["id" => 22, "name" => "product 2", "price" => 200],
+    ["id" => 31, "name" => "product 3", "price" => 300]
 ];
 
-$collection = PhpCollection:collect($products)->keyBy('id')->all();
+$collection = PhpCollection:collect($products)->keyBy("id")->all();
 
 /*
 [
-    16 => ['id' => 1, 'name' => 'product 1', 'price' => 100, 'pricex2' => 200],
-    22 => ['id' => 2, 'name' => 'product 2', 'price' => 200, 'pricex2' => 400],
-    31 => ['id' => 3, 'name' => 'product 3', 'price' => 300, 'pricex2' => 600]
+    16 => ["id" => 1, "name" => "product 1", "price" => 100, "pricex2" => 200],
+    22 => ["id" => 2, "name" => "product 2", "price" => 200, "pricex2" => 400],
+    31 => ["id" => 3, "name" => "product 3", "price" => 300, "pricex2" => 600]
 ]
 */
 
@@ -224,21 +222,21 @@ $collection = PhpCollection:collect($products)->keyBy('id')->all();
 #### groupBy($key | function($item))
 ```php
 $products = [
-    ['id' => 16, 'category_id' => 1, 'name' => 'product 1', 'price' => 100],
-    ['id' => 22, 'category_id' => 2, 'name' => 'product 2', 'price' => 200],
-    ['id' => 31, 'category_id' => 2, 'name' => 'product 3', 'price' => 300]
+    ["id" => 16, "category_id" => 1, "name" => "product 1", "price" => 100],
+    ["id" => 22, "category_id" => 2, "name" => "product 2", "price" => 200],
+    ["id" => 31, "category_id" => 2, "name" => "product 3", "price" => 300]
 ];
 
-$collection = PhpCollection:collect($products)->groupBy('category_id')->all();
+$collection = PhpCollection:collect($products)->groupBy("category_id")->all();
 
 /*
 [
     1 => [
-        ['id' => 16, 'category_id' => 1, 'name' => 'product 1', 'price' => 100]
+        ["id" => 16, "category_id" => 1, "name" => "product 1", "price" => 100]
     ],
     2 => [
-        ['id' => 22, 'category_id' => 2, 'name' => 'product 2', 'price' => 200],
-        ['id' => 31, 'category_id' => 2, 'name' => 'product 3', 'price' => 300]
+        ["id" => 22, "category_id" => 2, "name" => "product 2", "price" => 200],
+        ["id" => 31, "category_id" => 2, "name" => "product 3", "price" => 300]
     ]   
 ]
 */
@@ -248,7 +246,7 @@ $collection = PhpCollection:collect($products)->groupBy('category_id')->all();
 #### find(function($item)) 
 #### some($value | function($item)) OR contains($value | function($item)))
 #### every(function($item))
-#### sort('' | $key | function($item))
+#### sort("" | $key | function($item))
 #### values()
 #### first()
 #### last()
@@ -271,6 +269,6 @@ $collection = PhpCollection:collect($products)->groupBy('category_id')->all();
 #### diff($array)
 #### has($key)
 #### flip()
-#### min('' | $key | function($item))
-#### max('' | $key | function($item))
+#### min("" | $key | function($item))
+#### max("" | $key | function($item))
 #### reduce($function)
