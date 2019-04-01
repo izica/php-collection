@@ -368,3 +368,11 @@ class PhpCollection
         return $this->contains($function);
     }
 }
+
+
+if(!function_exists('collect')) {
+    function collect($data)
+    {
+        return PhpCollection::collect($data);
+    }
+}
