@@ -23,6 +23,11 @@ $collection2 = $collection->filter(function($item){
 
 ```
 
+collect() alias
+```php
+$collection = collect([100, 200, 300, 400]);
+```
+
 ### Documentation
 
 * [collect](#collectarray)
