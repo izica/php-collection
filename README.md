@@ -23,11 +23,6 @@ $collection2 = $collection->filter(function($item){
 
 ```
 
-collect() alias
-```php
-$collection = collect([100, 200, 300, 400]);
-```
-
 ### Documentation
 
 * [collect](#collectarray)
@@ -248,10 +243,11 @@ $collection = PhpCollection:collect($products)->groupBy("category_id")->all();
 
 ```
 
-#### find(function($item)) 
+#### find(function($item))
 #### some($value | function($item)) OR contains($value | function($item))
 #### every(function($item))
-#### sort("" | $key | function($item))
+#### sort(function($item))
+#### sortBy($key, $asc = true)
 #### values()
 #### first()
 #### last()
