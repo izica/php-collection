@@ -306,8 +306,13 @@ class PhpCollection
 	 * @param $function
 	 * @return PhpCollection
 	 */
-	public function sort($function)
+	public function sort($function = false)
 	{
+		if ($function === false) {
+			$function = function ($a, $b) {
+				return $a > $b ? +1 : -1;
+			};
+		}
 		$arData = $this->arCollection;
 		uasort($arData, $function);
 		return new PhpCollection($arData);
@@ -375,21 +380,21 @@ class PhpCollection
 	}
 
 	/**
-	 * @param $array
 	 * @return PhpCollection
 	 */
 	public function unique()
 	{
 		$arBuffer = [];
 		$arResult = [];
-		foreach ($this->arCollection as $arItem){
-			$sHash = md5($arItem);
-			if(isset($arBuffer[$sHash])){
-				if($arBuffer[$sHash] !== json_encode($arItem)){
+		foreach ($this->arCollection as $arItem) {
+			$sJson = json_encode($arItem);
+			$sHash = md5($sJson);
+			if (isset($arBuffer[$sHash])) {
+				if ($arBuffer[$sHash] !== $sJson) {
 					$arResult[] = $arItem;
 				}
-			}else{
-				$arBuffer[$sHash] = json_encode($arItem);
+			} else {
+				$arBuffer[$sHash] = $sJson;
 				$arResult[] = $arItem;
 			}
 		}
