@@ -1,4 +1,5 @@
 <?php
+namespace Izica;
 
 /**
  * Class PhpCollection
