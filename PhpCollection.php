@@ -396,7 +396,26 @@ class PhpCollection
      */
     public function add($element)
     {
-        return new PhpCollection(array_merge($this->arCollection, [$element]));
+        return $this->push($element);
+    }
+
+
+    /**
+     * @param $element
+     * @return PhpCollection
+     */
+    public function append($element)
+    {
+        return $this->push($element);
+    }
+
+    /**
+     * @param $element
+     * @return PhpCollection
+     */
+    public function prepend($element)
+    {
+        return new PhpCollection(array_merge([$element], $this->arCollection));
     }
 
     /**
