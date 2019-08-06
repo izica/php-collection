@@ -56,7 +56,7 @@ $products = [
 
 $collection = PhpCollection:collect($products);
 
-// make collection from signle element
+// make collection from single element
 $collection = PhpCollection:collect($products[0], true);
 
 ```
