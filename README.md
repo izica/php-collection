@@ -46,7 +46,7 @@ $collection2 = $collection->filter(function($item){
 * [toJson](#tojson)
 
 
-#### collect($array)
+#### collect($array, $isSingleElement = false)
 ```php
 $products = [
     ["id" => 1, "name" => "product 1", "price" => 100],
@@ -55,6 +55,9 @@ $products = [
 ];
 
 $collection = PhpCollection:collect($products);
+
+// make collection from signle element
+$collection = PhpCollection:collect($products[0], true);
 
 ```
 
