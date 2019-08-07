@@ -140,6 +140,26 @@ class PhpCollection
     }
 
     /**
+     * @param integer $count
+     * @return PhpCollection
+     */
+    public function offset($count)
+    {
+        $this->arCollection = array_slice($this->arCollection, $count);
+        return $this;
+    }
+
+    /**
+     * @param integer $count
+     * @return PhpCollection
+     */
+    public function limit($count)
+    {
+        $this->arCollection = array_slice($this->arCollection,0, $count);
+        return $this;
+    }
+
+    /**
      * @param string $glue
      * @param string $serializer
      * @return string
