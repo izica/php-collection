@@ -150,12 +150,23 @@ class PhpCollection
     }
 
     /**
-     * @param integer $count
+     * @param integer $offset
+     * @param integer $length
      * @return PhpCollection
      */
-    public function limit($count)
+    public function slice($offset, $length)
     {
-        $this->arCollection = array_slice($this->arCollection,0, $count);
+        $this->arCollection = array_slice($this->arCollection, $offset, $length);
+        return $this;
+    }
+
+    /**
+     * @param integer $length
+     * @return PhpCollection
+     */
+    public function limit($length)
+    {
+        $this->arCollection = array_slice($this->arCollection,0, $length);
         return $this;
     }
 
