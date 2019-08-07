@@ -23,19 +23,19 @@ class PhpCollection
 
     /**
      * @param $data
-     * @param bool $isSingleElement
+     * @param $isSingleElement
      * @return PhpCollection
      */
     public static function collect($data, $isSingleElement = false)
     {
-    	if($isSingleElement){
-    		return new PhpCollection([$data]);
-    	}
+        if ($isSingleElement) {
+            return new PhpCollection([$data]);
+        }
         return new PhpCollection($data);
     }
 
     /**
-     * @param string $key
+     * @param $key
      * @return PhpCollection
      */
     public function pluck($key)
@@ -48,7 +48,7 @@ class PhpCollection
     }
 
     /**
-     * @param array $keys
+     * @param $keys
      * @return PhpCollection
      */
     public function only($keys)
@@ -82,7 +82,7 @@ class PhpCollection
     }
 
     /**
-     * @param array $keys
+     * @param string[] $keys
      * @return PhpCollection
      */
     public function exclude($keys)
@@ -112,7 +112,7 @@ class PhpCollection
     }
 
     /**
-     * @param array $array
+     * @param $array
      * @return PhpCollection
      */
     public function zip($array)
@@ -129,6 +129,14 @@ class PhpCollection
         }
 
         return new PhpCollection($arData);
+    }
+
+    /**
+     * @return PhpCollection
+     */
+    public function keys()
+    {
+        return new PhpCollection(array_keys($this->arCollection));
     }
 
     /**
@@ -162,7 +170,7 @@ class PhpCollection
     }
 
     /**
-     * @param function $function
+     * @param bool $function
      * @return PhpCollection
      */
     public function filter($function = false)
@@ -182,7 +190,7 @@ class PhpCollection
     }
 
     /**
-     * @param function $function
+     * @param bool $function
      * @return PhpCollection
      */
     public function map($function = false)
@@ -200,7 +208,7 @@ class PhpCollection
     }
 
     /**
-     * @param string $key
+     * @param $key
      * @return PhpCollection
      */
     public function keyBy($key)
@@ -213,7 +221,7 @@ class PhpCollection
     }
 
     /**
-     * @param string $key
+     * @param $key
      * @return PhpCollection
      */
     public function groupBy($key)
@@ -258,7 +266,7 @@ class PhpCollection
     }
 
     /**
-     * @return array
+     * @return mixed
      */
     public function first()
     {
@@ -270,7 +278,7 @@ class PhpCollection
     }
 
     /**
-     * @return array
+     * @return mixed
      */
     public function last()
     {
@@ -313,7 +321,7 @@ class PhpCollection
     }
 
     /**
-     * @param function $function
+     * @param $function
      * @return PhpCollection
      */
     public function sort($function = false)
@@ -329,7 +337,7 @@ class PhpCollection
     }
 
     /**
-     * @param function $function
+     * @param $function
      * @return bool|mixed
      */
     public function find($function)
@@ -344,7 +352,7 @@ class PhpCollection
     }
 
     /**
-     * @param function $function
+     * @param $function
      * @return bool
      */
     public function every($function)
@@ -358,7 +366,7 @@ class PhpCollection
     }
 
     /**
-     * @param function $function
+     * @param $function
      * @return bool
      */
     public function contains($function)
@@ -372,7 +380,7 @@ class PhpCollection
     }
 
     /**
-     * @param function $function
+     * @param $function
      * @return bool
      */
     public function some($function)
@@ -381,7 +389,7 @@ class PhpCollection
     }
 
     /**
-     * @param array $array
+     * @param $array
      * @return PhpCollection
      */
     public function merge($array)
