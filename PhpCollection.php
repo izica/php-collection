@@ -498,7 +498,7 @@ class PhpCollection
     /**
      * @return number
      */
-    public function sum($sKey = null)
+    public function sum($keyOrFunc = null)
     {
         $nResult = 0;
         if ($sKey === null) {
@@ -506,8 +506,14 @@ class PhpCollection
                 $nResult += $nItem;
             }
         } else {
-            foreach ($this->arCollection as $arItem) {
-                $nResult += $arItem[$sKey];
+            if (is_callable($keyOrFunc)) {
+                foreach ($this->arCollection as $arItem) {
+                    $nResult += $keyOrFunc($arItem);
+                }
+            } else {
+                foreach ($this->arCollection as $arItem) {
+                    $nResult += $arItem[$sKey];
+                }
             }
         }
 
