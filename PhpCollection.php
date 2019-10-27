@@ -166,7 +166,7 @@ class PhpCollection
      */
     public function limit($length)
     {
-        $this->arCollection = array_slice($this->arCollection,0, $length);
+        $this->arCollection = array_slice($this->arCollection, 0, $length);
         return $this;
     }
 
@@ -242,12 +242,19 @@ class PhpCollection
      * @param $key
      * @return PhpCollection
      */
-    public function keyBy($key)
+    public function keyBy($keyOrFunc)
     {
         $arData = [];
-        foreach ($this->arCollection as $arItem) {
-            $arData[$arItem[$key]] = $arItem;
+        if (is_callable($keyOrFunc)) {
+            foreach ($this->arCollection as $arItem) {
+                $arData[$keyOrFunc($arItem)] = $arItem;
+            }
+        } else {
+            foreach ($this->arCollection as $arItem) {
+                $arData[$arItem[$keyOrFunc]] = $arItem;
+            }
         }
+
         return new PhpCollection($arData);
     }
 
@@ -486,5 +493,24 @@ class PhpCollection
         }
 
         return new PhpCollection($arResult);
+    }
+
+    /**
+     * @return number
+     */
+    public function sum($sKey = null)
+    {
+        $nResult = 0;
+        if ($sKey === null) {
+            foreach ($this->arCollection as $nItem) {
+                $nResult += $nItem;
+            }
+        } else {
+            foreach ($this->arCollection as $arItem) {
+                $nResult += $arItem[$sKey];
+            }
+        }
+
+        return $nResult;
     }
 }
