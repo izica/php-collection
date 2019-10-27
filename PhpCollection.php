@@ -501,7 +501,7 @@ class PhpCollection
     public function sum($keyOrFunc = null)
     {
         $nResult = 0;
-        if ($sKey === null) {
+        if ($keyOrFunc === null) {
             foreach ($this->arCollection as $nItem) {
                 $nResult += $nItem;
             }
@@ -512,7 +512,7 @@ class PhpCollection
                 }
             } else {
                 foreach ($this->arCollection as $arItem) {
-                    $nResult += $arItem[$sKey];
+                    $nResult += $arItem[$keyOrFunc];
                 }
             }
         }
