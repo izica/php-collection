@@ -1,12 +1,6 @@
 {
     "name": "izica/php-collection",
     "description": "Tools and utilities for working with arrays",
-    "authors": [
-        {
-            "name": "Golovarchuk Artyom",
-            "email": "artemiztomska@gmail.com"
-        }
-    ],
     "keywords": ["php", "array", "arrays", "collection", "collections", "tools", "utility", "tool", "utilities"],
     "license": "MIT",
     "require": {
